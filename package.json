@@ -1,0 +1,22 @@
+{
+  "name": "authentication_app_angular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.6"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "worstcodah",
+  "license": "ISC"
+}
