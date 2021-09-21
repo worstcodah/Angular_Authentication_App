@@ -30,14 +30,43 @@ app.use(express.urlencoded({ extended: true }));
  */
 
 // TODO
+const dbOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
+mongoose.createConnection(process.env.MONGO_URI, dbOptions);
+
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.MONGO_URI,
+  collection: "sessions",
+});
+
+app.use(
+  session({
+    secret: "some secret",
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore,
+    cookie: {
+      maxAge: 60 * 60 * 24, // = A day
+    },
+  })
+);
 
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
  */
+require("./config/passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 /**
  * -------------- ROUTES ----------------
  */
