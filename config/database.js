@@ -15,7 +15,7 @@ require("dotenv").config();
  */
 
 const devConnection = process.env.DB_STRING;
-const prodConnection = process.env.DB_STRING_PROD;
+const prodConnection = process.env.MONGO_URI;
 
 // Connect to the correct environment database
 if (process.env.NODE_ENV === "production") {
